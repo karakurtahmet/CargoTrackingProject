@@ -1,0 +1,23 @@
+﻿@model EntityLayer.Concrete.Firm
+@{
+    Layout = null;
+}
+<h1>Yeni Firma Ekleme Sayfası</h1>
+<br />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("AddFirm", "AdminFirm", FormMethod.Post))
+{
+    <div class="form form-control">
+        @Html.Label("Firma Adı")
+        @Html.TextBoxFor(x => x.FirmName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.FirmName)
+        <br />
+        @Html.Label("Firma Adres")
+        @Html.TextBoxFor(x => x.FirmAddres, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.FirmAddres)
+        <br />
+        <button class="btn btn-primary">Firmayı Ekle</button>
+
+    </div>
+}

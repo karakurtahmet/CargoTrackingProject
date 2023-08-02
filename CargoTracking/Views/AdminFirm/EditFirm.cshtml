@@ -1,0 +1,25 @@
+﻿@model EntityLayer.Concrete.Firm
+@{
+    Layout = null;
+}
+<h1>Firma Düzenleme</h1>
+<br />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("EditFirm", "AdminFirm", FormMethod.Post))
+{
+    <div class="form form-control">
+
+        @Html.Label("Firma Id")
+        @Html.TextBoxFor(x => x.FirmId, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.Label("Firma Adı")
+        @Html.TextBoxFor(x => x.FirmName, new { @class = "form-control" })
+        <br />
+        @Html.Label("Firma Adres")
+        @Html.TextBoxFor(x => x.FirmAddres, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-primary">Değişiklikleri Kaydet</button>
+
+    </div>
+}

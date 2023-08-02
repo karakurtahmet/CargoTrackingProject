@@ -1,0 +1,25 @@
+﻿@using EntityLayer.Concrete
+@model List<User>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>UserId</th>
+        <th>İsim</th>
+        <th>Firma İsmi</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.UserId</td>
+                    <td>@item.Name</td>
+                    <td>@item.Firm.FirmName</td>
+                </tr>
+            }
+</table>

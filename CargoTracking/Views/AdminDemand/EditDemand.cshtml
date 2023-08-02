@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Concrete.Demand
+@{
+    Layout = null;
+}
+<h1>Yeni Talep Ekleme Sayfası</h1>
+<br />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("EditDemand", "AdminDemand", FormMethod.Post))
+{
+    <div class="form form-control">
+
+        @Html.Label("Talep ID")
+        @Html.TextBoxFor(x => x.DemandId, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(x => x.DemandId)
+        <br />
+        @Html.Label("Koli Sayısı")
+        @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Quantity)
+        <br />
+        @Html.Label("Kullanıcı")
+        @Html.DropDownListFor(x => x.UserId, (List<SelectListItem>)ViewBag.vlu, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserId)
+        <br />
+        @Html.LabelFor(model => model.StatusId)
+        @Html.DropDownList("StatusID", ViewBag.DemandStatusList as IEnumerable<SelectListItem>, "Select Demand Status", new { @class = "form-control" })
+        <br />
+        <button class="btn btn-primary">Düzenle</button>
+
+    </div>
+}

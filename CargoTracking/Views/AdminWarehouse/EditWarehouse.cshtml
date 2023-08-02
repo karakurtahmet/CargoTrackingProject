@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.Warehouse
+@{
+    Layout = null;
+}
+<h1>Depo Düzenleme</h1>
+<br />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("EditWarehouse", "AdminWarehouse", FormMethod.Post))
+{
+    <div class="form form-control">
+
+        @Html.Label("Depo Id")
+        @Html.TextBoxFor(x => x.WarehouseId, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.Label("Depo Adı")
+        @Html.TextBoxFor(x => x.WarehouseName, new { @class = "form-control" })
+        <br />
+        @Html.Label("Depo Kapasite")
+        @Html.TextBoxFor(x => x.Capacity, new { @class = "form-control" })
+        <br />
+        @Html.Label("Depo Oran")
+        @Html.TextBoxFor(x => x.CurrentOccupancy, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-primary">Değişiklikleri Kaydet</button>
+
+    </div>
+}

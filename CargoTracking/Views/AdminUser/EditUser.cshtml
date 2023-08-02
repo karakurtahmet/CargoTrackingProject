@@ -1,0 +1,34 @@
+﻿@model EntityLayer.Concrete.User
+@{
+    Layout = null;
+}
+<h1>Kullanıcı Düzenleme Sayfası</h1>
+<br />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("EditUser", "AdminUser", FormMethod.Post))
+{
+    <div class="form form-control">
+        @Html.Label("Kullanıcı ID")
+        @Html.TextBoxFor(x => x.UserId, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(x => x.UserId)
+        <br />
+        @Html.Label("Kullanıcı Adı")
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserName)
+        <br />
+        @Html.Label("Şifre")
+        @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Password)
+        <br />
+        @Html.Label("İsim")
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name)
+        <br />
+        @Html.Label("Firma")
+        @Html.DropDownListFor(x => x.FirmId, (List<SelectListItem>)ViewBag.vlf, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.FirmId)
+        <button class="btn btn-primary">Düzenle</button>
+
+    </div>
+}

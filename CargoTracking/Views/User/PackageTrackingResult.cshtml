@@ -1,0 +1,27 @@
+﻿
+@using EntityLayer.Concrete;
+@model List<PackageTracking>
+
+@{
+    ViewBag.Title = "PackageTrackingResult";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<h2>Package Tracking Objects for Barcode: @ViewBag.BarcodeNumber</h2>
+
+<table>
+    <tr>
+        <th>Tracking ID</th>
+        <th>Description</th>
+        <th>Index Date</th>
+    </tr>
+    @foreach (var tracking in Model)
+    {
+        <tr>
+            <td>@tracking.TrackingId</td>
+            <td>@tracking.Description</td>
+            <td>@tracking.IndexDate</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,33 @@
+﻿@using EntityLayer.Concrete;
+@model List<Store>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Mağaza</h1>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Mağaza ID</th>
+        <th>Mağaza İsmi</th>
+        <th>Firma</th>
+        <th>Güncelle</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.StoreId</th>
+            <td>@item.StoreName</td>
+            <td>@item.Firm.FirmName</td>
+            <td><a href="/AdminStore/EditStore/@item.StoreId" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/AdminStore/DeleteStore/@item.StoreId" class="btn btn-danger">Sil</a></td>
+        </tr>
+    }
+</table>
+<a href="/AdminStore/AddStore" class="btn btn-info">Yeni Mağaza Ekle</a>
+
+

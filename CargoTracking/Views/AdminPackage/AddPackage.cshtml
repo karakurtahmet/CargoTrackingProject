@@ -1,0 +1,32 @@
+﻿@model EntityLayer.Concrete.Package
+@{
+    Layout = null;
+}
+<h1>Yeni Koli Ekleme Sayfası</h1>
+<br />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("AddPackage", "AdminPackage", FormMethod.Post))
+{
+    <div class="form form-control">
+        @Html.Label("Barkod Numarası")
+        @Html.TextBoxFor(x => x.Barcode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Barcode)
+        <br />
+        @Html.Label("Koli Durumu")
+        @Html.DropDownListFor(x => x.PStatusID, (List<SelectListItem>)ViewBag.ps, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PStatusID)
+        <br />
+        @Html.Label("Depo")
+        @Html.DropDownListFor(x => x.WarehouseId, (List<SelectListItem>)ViewBag.vlw, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.WarehouseId)
+        <br />
+        @Html.Label("Mağaza")
+        @Html.DropDownListFor(x => x.StoreCode, (List<SelectListItem>)ViewBag.vls, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.StoreCode)
+        <br />
+
+        <button class="btn btn-primary">Koliyi Ekle</button>
+
+    </div>
+}

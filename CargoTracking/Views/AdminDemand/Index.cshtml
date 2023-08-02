@@ -1,0 +1,62 @@
+﻿@using EntityLayer.Concrete;
+@model List<Demand>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Talep Ekranı</h1>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Talep ID</th>
+        <th>Koli Sayısı</th>
+        <th>Firma</th>
+        <th>Kullanıcı ID ve Kullanıcı Adı</th>
+        <th>Talep Tarihi</th>
+        <th>Talep Durumu</th>
+        <th>Aksiyon 1</th>
+        <th>Reddet</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.DemandId</th>
+            <td>@item.Quantity</td>
+            <td>@item.User.Firm.FirmName</td> 
+            <td>@item.UserId | @item.User.Name</td>
+            <td>@item.DemandDate</td>
+            <td>@item.StatusId</td>
+
+
+            @{
+                if (item.StatusId == 1)
+                {
+                    <td><a href="/AdminDemand/AcceptDemand/@item.DemandId" class="btn btn-success">Karşıla</a></td>
+                }
+                else if (item.StatusId == 4)
+                {
+                    <td><a href="/AdminDemand/ConfirmDemand/@item.DemandId" class="btn btn-info">Talebi Onayla</a></td>
+
+                }
+            }
+            @{
+                if (item.StatusId == 4)
+                {
+                    <td><a href="/AdminDemand/RefuseAcceptedDemand/@item.DemandId" class="btn btn-danger">Talebi İptal Et</a></td>
+
+                }
+                else if (item.StatusId == 1)
+                {
+                    <td><a href="/AdminDemand/RefuseDemand/@item.DemandId" class="btn btn-warning">Reddet</a></td>
+
+                }
+            }
+        </tr>
+    }
+</table>
+<a href="/AdminDemand/AddDemand" class="btn btn-info">Yeni Talep</a>
+
+

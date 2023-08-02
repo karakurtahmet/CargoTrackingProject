@@ -1,0 +1,31 @@
+﻿@using EntityLayer.Concrete
+@model List<Package>
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<!DOCTYPE html>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Package ID</th>
+        <th>Durumu</th>
+        <th>Nerede</th>
+        <th>Barkod Numarası</th>
+        <th>Ait olduğu yer</th>
+        <th>Talep Eden</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.PackageId</th>
+            <th>@item.PackageStatus.PStatusName</th>
+            <th>@item.Warehouse.WarehouseName</th>
+            <th>@item.Barcode</th>
+            <th>@item.Store.StoreName</th>
+            <th>@item.Demand.User.Name</th>
+        </tr>
+    }
+</table>
+

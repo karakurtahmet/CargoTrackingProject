@@ -1,0 +1,35 @@
+﻿@using EntityLayer.Concrete;
+@model List<Package>
+
+@{
+    ViewBag.Title = "GetPackagesByDemandId";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Taleplere Ait Koliler</h1>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Barkod Numarası</th>
+        <th>Kolinin Durumu</th>
+        <th>Depo İsmi</th>
+        <th>Mağaza Kodu</th>
+        <th>Talep Id</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Barcode</td>
+            <td>@item.PackageStatus.PStatusName</td>
+            <td>@item.Warehouse.WarehouseName</td>
+            <td>@item.StoreCode</td>
+            <td>@item.DemandID</td>
+
+            
+        </tr>
+    }
+</table>

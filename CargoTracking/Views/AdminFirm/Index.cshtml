@@ -1,0 +1,31 @@
+﻿@using EntityLayer.Concrete
+@model List<Firm>
+@{
+    ViewBag.Title = "Index";
+}
+<h1>Firma</h1>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>FirmId</th>
+        <th>Firma İsim</th>
+        <th>Firma Addres</th>
+        <th>Güncelle</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.FirmId</th>
+            <td>@item.FirmName</td>
+            <td>@item.FirmAddres</td>
+            <td><a href="/AdminFirm/EditFirm/@item.FirmId" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/AdminFirm/DeleteFirm/@item.FirmId" class="btn btn-danger">Sil</a></td>
+        </tr>
+    }
+</table>
+<a href="/AdminFirm/AddFirm" class="btn btn-info">Yeni Firma Ekle</a>
+

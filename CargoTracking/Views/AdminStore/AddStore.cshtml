@@ -1,0 +1,22 @@
+﻿@model EntityLayer.Concrete.Store
+@{
+    Layout = null;
+}
+<h1>Yeni Mağaza Ekleme Sayfası</h1>
+<br />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("AddStore", "AdminStore", FormMethod.Post))
+{
+    <div class="form form-control">
+        @Html.Label("Mağaza Adı")
+        @Html.TextBoxFor(x => x.StoreName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.StoreName)
+        <br />
+        @Html.Label("Firma")
+        @Html.DropDownListFor(x => x.FirmId, (List<SelectListItem>)ViewBag.vlf, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.FirmId)
+        <button class="btn btn-primary">Mağaza Ekle</button>
+
+    </div>
+}

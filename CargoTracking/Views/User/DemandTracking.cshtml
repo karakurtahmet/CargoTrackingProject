@@ -1,0 +1,44 @@
+﻿@using EntityLayer.Concrete;
+@model List<DemandTracking>
+
+@{
+    ViewBag.Title = "DemandTracking";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<h1>Talep Takip Ekranı</h1>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+@using (Html.BeginForm("DemandTracking", "User", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <label for="demandId">Talep Id: </label>
+                    <input type="number" name="demandId" class="form-control" placeholder="Talep Id'yi gir" /> <button type="submit" class="btn btn-primary">Ara</button>
+                </div>
+            }
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Talep Takip ID</th>
+        <th>Talep ID</th>
+        <th>Kullanıcı ID ve Kullanıcı Adı</th>
+        <th>Durum</th>
+        <th>Tarihi</th>
+        <th>Açıklama</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.DemandTrackingId</th>
+            <td>@item.DemandId</td>
+            <td>@item.UserId | @item.User.Name</td>
+            <td>@item.DemandStatusId</td>
+            <td>@item.IndexDate</td>
+            <td>@item.ChangeDescription</td>
+            
+            
+        </tr>
+    }
+</table>

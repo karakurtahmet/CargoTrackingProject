@@ -1,0 +1,20 @@
+﻿@using CargoTracking.Models;
+@model BarcodeViewModel
+
+@{
+    ViewBag.Title = "PackageTracking";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<h1>Koli Takip Ekranı</h1>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+@using (Html.BeginForm("PackageTrackingResult", "User", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Barcode Number:")
+        @Html.TextBoxFor(m => m.BarcodeNumber, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}

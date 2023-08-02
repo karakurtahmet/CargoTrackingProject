@@ -1,0 +1,42 @@
+﻿@using EntityLayer.Concrete;
+@model List<Package>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Koli Ekranı</h1>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Koli ID</th>
+        <th>Koli Barkod Numarası</th>
+        <th>Koli Durum</th>
+        <th>Depo İsmi</th>
+        <th>Mağaza Kodu</th>
+        <th>Talep ID</th>
+        <th>Güncelle</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.PackageId</th>
+            <td>@item.Barcode</td>
+            <td>@item.PackageStatus.PStatusName</td>
+            <td>@item.Warehouse.WarehouseName</td>
+            <td>@item.StoreCode</td>
+            <td>@item.DemandID</td>
+
+
+
+            <td><a href="/AdminPackage/EditPackage/@item.PackageId" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/AdminPackage/DeletePackage/@item.PackageId" class="btn btn-danger">Sil</a></td>
+        </tr>
+    }
+</table>
+<a href="/AdminPackage/AddPackage" class="btn btn-info">Yeni Koli Ekle</a>
+
+

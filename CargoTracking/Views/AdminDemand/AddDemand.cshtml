@@ -1,0 +1,56 @@
+﻿@model EntityLayer.Concrete.Demand
+@{
+    Layout = null;
+}
+@Html.ValidationSummary()
+<h1>Yeni Talep Ekleme Sayfası</h1>
+<br />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("AddDemand", "AdminDemand", FormMethod.Post))
+{
+    <div class="form form-control">
+        @Html.Label("Koli Sayısı")
+        @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @id="quantity"})
+        @Html.ValidationMessageFor(x => x.Quantity)
+        <br />
+        @Html.Label("Kullanıcı")
+        @Html.DropDownListFor(x => x.UserId, (List<SelectListItem>)ViewBag.vlu, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserId)
+        <br />
+        @Html.LabelFor(model => model.StatusId)
+        @Html.DropDownList("StatusID", ViewBag.DemandStatusList as IEnumerable<SelectListItem>, "Select Demand Status", new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(model => model.StoreCode)
+        @Html.DropDownList("StoreCode", ViewBag.StoreList as IEnumerable<SelectListItem>, "Select Store Code", new { @class = "form-control", @onchange = "abc()",@id ="xxx" })
+        <br />
+        <button class="btn btn-primary" onclick="def()">Talep Ekle</button>
+        <span id="packageCountText">Packages in Warehouse </span>
+        <input type="text"  disabled="disabled" id="storeTotal" />
+    </div>
+}
+@foreach(var item in ViewBag.StorePackage)
+{
+                
+                <span id="item-key+@item.Key" name="@item.Value" style="display:none">@item.Value</span>
+            }
+<br />
+ <script>
+     function abc() {
+         var selectedStoreCode = document.getElementById("xxx").value;
+         document.getElementById("storeTotal").value = '';
+         var value = document.getElementById("item-key+" + selectedStoreCode).attributes.name.textContent;
+         console.log(value);
+         document.getElementById("storeTotal").value = value;
+         
+       
+     }
+     function def() {
+         var selectedStoreCode = document.getElementById("xxx").value;
+         var value = document.getElementById("item-key+" + selectedStoreCode).attributes.name.textContent;
+         var quantity = document.getElementById("quantity").value;
+         if (quantity > value) {
+             alert("Talep edilen koli sayısı, stoktaki koli sayısından fazla olmamalıdır!!!!")
+         }
+     }
+ </script>

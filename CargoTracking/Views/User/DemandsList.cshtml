@@ -1,0 +1,61 @@
+﻿@using EntityLayer.Concrete;
+@model List<Demand>
+
+@{
+    ViewBag.Title = "DemandList";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<h1>Talep Takip Ekranı</h1>
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Talep ID</th>
+        <th>Kullanıcı ID ve Kullanıcı Adı</th>
+        <th>Durum</th>
+        <th>Tarihi</th>
+        <th>Aksiyon</th>
+        <th>Koli</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.DemandId</td>
+            <td>@item.UserId | @item.User.Name</td>
+            <td>@item.StatusId</td>
+            <td>@item.DemandDate</td>
+            @{ if (item.StatusId == 1)
+                {
+                    <td><a href="/User/CancelDemand/@item.DemandId" class="btn btn-warning">İptal Et</a></td>
+
+                }
+                else if (item.StatusId == 2)
+                {
+                    <td>İptal Edildi</td>
+                }
+                else if (item.StatusId == 6)
+                {
+                    <td>Talebiniz Onaylanmıştır</td>
+                }
+                else
+                {
+                    <td>Beklemede</td>
+                }
+            }
+            @{
+                if (item.StatusId == 6)
+                {
+                    <td><a href="/User/GetPackagesByDemandId/@item.DemandId" class="btn btn-primary">Kolileri Göster</a></td>
+                }
+                else
+                {
+                    <td>Koli ataması yapılmadı</td>
+                }
+            }
+        </tr>
+    }
+</table>

@@ -1,0 +1,48 @@
+﻿@model EntityLayer.Concrete.Demand
+@{
+    ViewBag.Title = "CreateDemand";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@using (Html.BeginForm("CreateDemandResult", "User", FormMethod.Post))
+{
+    <div class="form form-control">
+        @Html.Label("Koli Sayısı")
+        @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", @id = "quantity" })
+        @Html.ValidationMessageFor(x => x.Quantity)
+        <br />
+        @Html.LabelFor(model => model.StoreCode)
+        @Html.DropDownList("StoreCode", ViewBag.storevalues as IEnumerable<SelectListItem>, "Mağaza Kodunu Seçiniz", new { @class = "form-control", @onchange = "abc()", @id = "xxx" })
+        <br />
+        <button class="btn btn-primary" onclick="def()">Talep Ekle</button>
+        <span id="packageCountText">Depodaki Koli Sayısı :</span>
+        <input type="text" disabled="disabled" id="storeTotal" />
+    </div>
+}
+@foreach (var item in ViewBag.StorePackage)
+{
+
+    <span id="item-key+@item.Key" name="@item.Value" style="display:none">@item.Value</span>
+}
+<br />
+
+<script>
+    function abc() {
+        var selectedStoreCode = document.getElementById("xxx").value;
+        document.getElementById("storeTotal").value = '';
+        var value = document.getElementById("item-key+" + selectedStoreCode).attributes.name.textContent;
+        console.log(value);
+        document.getElementById("storeTotal").value = value;
+
+
+    }
+    function def() {
+        var selectedStoreCode = document.getElementById("xxx").value;
+        var value = document.getElementById("item-key+" + selectedStoreCode).attributes.name.textContent;
+        var quantity = document.getElementById("quantity").value;
+        if (quantity > value) {
+            alert("Talep edilen koli sayısı, stoktaki koli sayısından fazla olmamalıdır!!!!")
+        }
+    }
+</script>
+
